@@ -1,17 +1,23 @@
 const express = require('express')
+const https = require("https");
+const fs = require("fs");
 const { getUsuarios, setUsuario, updateUsuario, deleteUsuario, insertarTransferencia, getTransferencias } = require('./db')
 const app = express()
-
-app.listen(3000, () => {
-  console.log("App escuchando puerto 3000")
-})
-
+const options = {
+  key: fs.readFileSync("./ssl/private.key"), // Clave privada
+  cert: fs.readFileSync("./ssl/certificate.crt"), // Certificado principal
+  ca: fs.readFileSync("./ssl/ca_bundle.crt"), // Certificado intermedio (cadena de confianza)
+};
 app.use(express.json())
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html")
 })
 
+
+https.createServer(options, app).listen(3000, () => {
+  console.log("Servidor HTTPS corriendo en https://localhost:3000");
+});
 // GET /usuarios
 app.get('/usuarios', async (req, res) => {
   try {
