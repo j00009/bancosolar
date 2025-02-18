@@ -2,8 +2,8 @@ const express = require('express')
 const { getUsuarios, setUsuario, updateUsuario, deleteUsuario, insertarTransferencia, getTransferencias } = require('./db')
 const app = express()
 
-app.listen(3000, () => {
-  console.log("App escuchando puerto 3000")
+app.listen(3001, () => {
+  console.log("App escuchando puerto 3001")
 })
 
 app.use(express.json())
