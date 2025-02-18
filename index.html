@@ -264,7 +264,7 @@
     let nombre = $("form:first input:first").val();
     let balance = Number($("form:first input:nth-child(2)").val());
     try {
-      const response = await fetch("${API_URL}/usuario", {
+      const response = await fetch(`${API_URL}/usuario`, {
         method: "post",
         headers: {
           "Content-Type": "application/json",
@@ -292,7 +292,7 @@
       return false;
     }
     try {
-      const response = await fetch("${API_URL}/transferencia", {
+      const response = await fetch(`${API_URL}/transferencia`, {
         method: "post",
         headers: {
           "Content-Type": "application/json",
@@ -312,7 +312,7 @@
   });
 
   const getUsuarios = async () => {
-    const response = await fetch("${API_URL}/usuarios");
+    const response = await fetch(`${API_URL}/usuarios`);
     let data = await response.json();
     $(".usuarios").html("");
 
@@ -347,7 +347,7 @@
   };
 
   const getTransferencias = async () => {
-    const { data } = await axios.get("${API_URL}/transferencias");
+    const { data } = await axios.get(`${API_URL}/transferencias`);
     $(".transferencias").html("");
 
     data.forEach((t) => {
